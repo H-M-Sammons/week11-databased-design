@@ -45,3 +45,7 @@ CREATE TABLE IF NOT EXISTS playlist (
     FOREIGN KEY (customer_id) REFERENCES users(customer_id) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (song_id) REFERENCES songs(order_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+
+
+--add junction tabls
