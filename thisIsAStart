@@ -27,19 +27,20 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255) NOT NULL,
     PRIMARY KEY (customer_id)
 );
---fix
+
 CREATE TABLE IF NOT EXISTS gern (
     gern_id SERIAL NOT NULL
     gern_name VARCHAR(255) NOT NULL,
-    --fix this
     PRIMARY KEY (gern_id)
 );
 
 CREATE TABLE IF NOT EXISTS playlist (
     playlist_id INT NOT NULL,
     customer_id INT NOT NULL,
+    --this only adds one song, adjust so that it can have multiple songs, this will require making this a menay to many, with an adintanla junction table. 
     song_id INT NOT NULL,
     --fix this
+    
     PRIMARY KEY (playlist_id, customer_id),
     FOREIGN KEY (customer_id) REFERENCES users(customer_id) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (song_id) REFERENCES songs(order_id) ON UPDATE CASCADE ON DELETE CASCADE
