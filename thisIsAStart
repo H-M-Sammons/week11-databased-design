@@ -1,0 +1,46 @@
+CREATE TABLE IF NOT EXISTS artists (
+    artists_id SERIAL NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    date_of_birth DATE NOT NULL,
+    PRIMARY KEY (artists_id)
+);
+
+CREATE TABLE IF NOT EXISTS songs (
+    order_id SERIAL NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    artists_id VARCHAR(255) NOT NULL,
+    duration INT NOT NULL,
+    explicits BOOL NULL DEFAULT FALSE,
+    link VARCHAR(255) NOT NULL,
+    -- check, this could be wrong
+    gern gern,
+    PRIMARY KEY (order_id),
+    FOREIGN KEY (artists_id) REFERENCES artists(artists_id) ON UPDATE CASCADE ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS users (
+    customer_id SERIAL NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL, 
+    password VARCHAR(255) NOT NULL,
+    PRIMARY KEY (customer_id)
+);
+--fix
+CREATE TABLE IF NOT EXISTS gern (
+    gern_id SERIAL NOT NULL
+    gern_name VARCHAR(255) NOT NULL,
+    --fix this
+    PRIMARY KEY (gern_id)
+);
+
+CREATE TABLE IF NOT EXISTS playlist (
+    playlist_id INT NOT NULL,
+    customer_id INT NOT NULL,
+    song_id INT NOT NULL,
+    --fix this
+    PRIMARY KEY (playlist_id, customer_id),
+    FOREIGN KEY (customer_id) REFERENCES users(customer_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (song_id) REFERENCES songs(order_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
